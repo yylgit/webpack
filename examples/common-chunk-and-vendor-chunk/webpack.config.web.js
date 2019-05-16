@@ -5,8 +5,7 @@ module.exports = {
 	mode: "development" || "production",
 	entry: {
 		pageA: "./pageA",
-		pageB: "./pageB",
-		pageC: "./pageC"
+		vendor: ["vue", "vue-router"] // 除了vendor只有一个entry 所以只有这两个库
 	},
 	optimization: {
 		splitChunks: {
@@ -15,21 +14,19 @@ module.exports = {
 					name: "manifest"
 				},
 				vendor: {
-					// test: /node_modules/,
 					chunks: "all",
 					minChunks: 2,
 					name: "vendor",
-					enforce: true,
-					minSize: 0 // This is example is too small to create commons chunks
+					enforce: true
 				}
 			}
 		},
 		runtimeChunk: {
-			name: "vendor"
+			name: "manifest"
 		}
 	},
 	output: {
-		path: path.join(__dirname, "dist"),
+		path: path.join(__dirname, "dist/web"),
 		filename: "[name].js"
 	}
 };

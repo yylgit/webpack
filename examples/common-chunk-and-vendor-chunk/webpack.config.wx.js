@@ -6,7 +6,8 @@ module.exports = {
 	entry: {
 		pageA: "./pageA",
 		pageB: "./pageB",
-		pageC: "./pageC"
+		pageC: "./pageC",
+		common: ["vue", "vue-router"]  // 保证这里的依赖肯定是放入common中
 	},
 	optimization: {
 		splitChunks: {
@@ -14,22 +15,20 @@ module.exports = {
 				manifest: {
 					name: "manifest"
 				},
-				vendor: {
-					// test: /node_modules/,
+				common: {
 					chunks: "all",
 					minChunks: 2,
-					name: "vendor",
-					enforce: true,
-					minSize: 0 // This is example is too small to create commons chunks
+					name: "common",
+					enforce: true
 				}
 			}
 		},
 		runtimeChunk: {
-			name: "vendor"
+			name: "manifest"
 		}
 	},
 	output: {
-		path: path.join(__dirname, "dist"),
+		path: path.join(__dirname, "dist/wx"),
 		filename: "[name].js"
 	}
 };
