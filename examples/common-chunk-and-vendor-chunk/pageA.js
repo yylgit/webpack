@@ -5,4 +5,7 @@ require('vue');
 require('vue-router');
 module.exports = "pageA";
 require('./module1');
+
 require('./module2');
+require('./css1.css')
+require('./css2.css')
